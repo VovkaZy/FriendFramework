@@ -32,14 +32,21 @@ __How To:__
 - Just change it in test file find_freelancers_with_keyword.rb
   Friend is smart enough to get it direct from input
 
-- __P.S:__ 
+__P.S:__ 
+
 - You can use lib/constants/constants.rb, if you want to build more tests in the future:)
 
 __Hack To:__
 
 - If you don't want to download it, you can just try it on my DigitalOcean droplet using ssh (don't forget to ask me 
 for credentials in Hangouts)
-- `$ ssh upworkqa@188.166.103.213`
+
+```
+  $ ssh upworkqa@188.166.103.213
+  enter credentials
+  $ cd /home/upworkqa/FriendFramework/tests
+  $ ruby find_freelancers_with_keyword.rb
+``` 
 
 
 

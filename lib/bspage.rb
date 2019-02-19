@@ -75,8 +75,7 @@ class BSPage
   # To close cookie banner at the bottom of a page
   def close_banner
     Logbook.message('Closing cookie bunner...')
-    @browser.execute_script("document.querySelector('ugc-cookie-banner-internal').shadowRoot.querySelector('.close')
-.click()")
+    @browser.execute_script("document.querySelector('ugc-cookie-banner-internal').shadowRoot.querySelector('.close').click()")
   end
 
   # To close the browser and show common result final result of a test execution

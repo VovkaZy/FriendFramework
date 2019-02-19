@@ -8,7 +8,7 @@ require_relative '../../lib/logbook'
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 module FreelancersAsserts
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # ==== METHODS ====
+  # ==== VERIFICATION METHODS ====
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # To verify that freelancer(s) profile(s) contains keyword
   # Logs all results to STDOUT
