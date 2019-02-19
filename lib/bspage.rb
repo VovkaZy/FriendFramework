@@ -95,7 +95,7 @@ class BSPage
   # To get the screenshot with the result of test script
   def screenshot
     Logbook.step('Taking a screenshot of a result page')
-    @browser.save_screenshot("./screenshots/screenshot - #{Time.now.strftime('%Y-%m-%d %H-%M-%S')}.png")
+    @browser.save_screenshot("screenshot - #{Time.now.strftime('%Y-%m-%d %H-%M-%S')}.png")
   end
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
