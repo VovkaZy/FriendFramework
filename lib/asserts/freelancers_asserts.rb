@@ -22,6 +22,7 @@ module FreelancersAsserts
       Logbook.message(logger_arr.join("\n") + "\n")
     end
   end
+
   # To verify which fields of freelancer's profile contains keyword
   # Logs all results to STDOUT
   def verify_freelancer_profile(freelancers)
@@ -36,10 +37,13 @@ module FreelancersAsserts
       end
     end
   end
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # ==== PRIVATE METHODS ====
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
   private
+
   # To verify which fields of freelancer's profile contains keyword
   # Logs all results to STDOUT
   def search_fileds_for_keyword_log(freelancer, keyword = nil)
@@ -47,6 +51,7 @@ module FreelancersAsserts
     result_arr = []
     freelancer.each do |key, value|
       next if key == :name
+
       result_arr << if value.to_s.downcase.include?(keyword.downcase)
                       "+ field '#{key}' contains keyword '#{keyword}'"
                     else

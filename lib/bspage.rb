@@ -17,6 +17,7 @@ class BSPage
   def initialize(browser)
     @browser = browser
   end
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # === ACTION METHODS ====
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -25,6 +26,7 @@ class BSPage
     Logbook.step('Deleting all cookies... (^.^)' + "\n")
     @browser.manage.delete_all_cookies
   end
+
   # Get the title of the current page
   #
   # @return [String]
@@ -32,12 +34,14 @@ class BSPage
     @browser.title
     Logbook.message("Page title is #{@browser}")
   end
+
   # Searching for the element on a page with given locator
   #
   # @return [String]: Founded element
   def find(locator)
     @browser.find_element locator
   end
+
   # Get to the given url
   #
   # @param [String]: URL needed to open
@@ -48,12 +52,14 @@ class BSPage
 
     @browser
   end
+
   # Get the URL of the current page
   #
   # @return [String]
   def url
     @browser.current_url
   end
+
   # Closing current page in browser
   def close_page
     Logbook.message('Closing browser page >>')
@@ -65,12 +71,14 @@ class BSPage
       Logbook.message('Done! Page closed')
     end
   end
+
   # To close cookie banner at the bottom of a page
   def close_banner
     Logbook.message('Closing cookie bunner...')
     @browser.execute_script("document.querySelector('ugc-cookie-banner-internal').shadowRoot.querySelector('.close')
 .click()")
   end
+
   # To close the browser and show common result final result of a test execution
   # with steps, warnings and errors
   def close_browser
@@ -78,16 +86,19 @@ class BSPage
     @browser.quit
     Logbook.publish_results
   end
+
   # Scrolling to the bottom of the page
   def scroll_to_bottom
     Logbook.step('Scrolling to the bottom of a page')
-    @browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+    @browser.execute_script'window.scrollTo(0, document.body.scrollHeight)')
   end
+
   # To get the screenshot with the result of test script
   def screenshot
     Logbook.step('Taking a screenshot of a result page')
-    @browser.save_screenshot("./screenshot - #{Time.now.strftime('%Y-%m-%d %H-%M-%S')}.png")
+    @browser.save_screenshot("./screenshots/screenshot - #{Time.now.strftime('%Y-%m-%d %H-%M-%S')}.png")
   end
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # === TEXT METHODS ====
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -96,6 +107,7 @@ class BSPage
     Logbook.step("Type text '#{text}' to the input with locator #{locator}")
     find(locator).send_keys(:backspace, text)
   end
+
   # Get the text content of this element
   #
   # @return [String]
@@ -103,12 +115,14 @@ class BSPage
     Logbook.message("Get text of element with locator #{locator}")
     find(locator).text
   end
+
   # Use to clear the text field content
   #
   # @param locator: Locator of element need to clear
   def clear_text_field(locator)
     find(locator).clear
   end
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # === CLICK METHODS ====
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -119,6 +133,7 @@ class BSPage
     Logbook.message("Click on the element with locator #{locator}")
     find(locator).click
   end
+
   # Click on element & wait some time
   #
   # @param locator: Locator of element need to click
@@ -130,6 +145,7 @@ class BSPage
     click_on(locator)
     wait(sec)
   end
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # === WAIT METHODS ====
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -140,6 +156,7 @@ class BSPage
   def wait_for(seconds = Constants::DEFAULT_WAIT)
     Selenium::WebDriver::Wait.new(timeout: seconds).until { yield }
   end
+
   # Waiting for page to loaded verifying it with JS using favicon ! == null
   def wait_for_page_to_load(page)
     Logbook.message("Waiting for page #{page} to load...")
@@ -147,13 +164,15 @@ class BSPage
       @browser.execute_script("return document.querySelector('link[rel=\"icon\"]') !== null")
     end
   end
+
   # Wait some time in seconds
   #
   # @param sec [Integer]: Waiting time
   def wait(sec = 5)
-    Logbook.message("Waiting #{sec} sec >>" + "\n" )
+    Logbook.message("Waiting #{sec} sec >>" + "\n")
     sec.instance_of?(Integer) ? sleep(sec) : Logbook.message("Waiting time is not integer: [#{sec}]" + "\n")
   end
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # === VERIFICATION METHODS ====
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -166,6 +185,7 @@ class BSPage
   rescue Selenium::WebDriver::Error::NoSuchElementError
     false
   end
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   #
   # === ACTIONS WITH ELEMENTS ====
@@ -181,6 +201,7 @@ class BSPage
   def get_element(locator, base_element = nil)
     (base_element ? base_element : @browser).find_element(locator)
   end
+
   #  Get all elements by locator matching the given arguments
   #
   # @param locator: Locator of element need to find
@@ -192,6 +213,7 @@ class BSPage
     (base_element ? base_element : @browser).find_elements(locator)
   end
 
+  # Check if element with locator is displayed on a page
   def displayed?(locator)
     Logbook.message("Check is element with locator #{locator} displayed?")
     begin
@@ -200,6 +222,7 @@ class BSPage
       false
     end
   end
+
   # Get element text
   #
   # @param locator: Locator of element need to find
@@ -210,6 +233,7 @@ class BSPage
   def get_element_text(locator, base_element = nil)
     get_element(locator, base_element).text
   end
+
   # Get elements text
   #
   # @param element [ElementLocator]: Locator of elements need to find

@@ -17,6 +17,7 @@ class FindFreelancersPage < BSPage
     @browser = browser
     @freelancers_profiles_arr = []
   end
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # ==== CONSTANTS WITH LOCATORS ====
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -51,6 +52,7 @@ class FindFreelancersPage < BSPage
     end
     @freelancers_profiles_arr
   end
+
   # Get skills from profile
   #
   # @return [skills_list] array of strings
@@ -62,16 +64,19 @@ class FindFreelancersPage < BSPage
     end
     skills_list
   end
+
   # Counts how many freelancers in an array
   #
   # @return [Integer]
   def freelancers_count
     @freelancers_profiles_arr.count
   end
+
   # Click on random freelancer's title
   def choose_random_freelancer
     @choosen_freelancer_name = @freelancers_profiles_arr[rand(0...freelancers_count)][:name]
   end
+
   # [8]  Click on random freelancer's title
   # [9]  Get into that freelancer's profile
   #

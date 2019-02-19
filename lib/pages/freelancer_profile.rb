@@ -31,7 +31,9 @@ class FreelancerProfile < BSPage
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # ==== PRIVATE METHODS ====
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
   private
+
   # To get text from profile fields
   #
   # @returns {} with element's text as a value
