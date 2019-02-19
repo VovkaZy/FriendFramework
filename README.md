@@ -17,7 +17,7 @@ __Preinstall:__
 __How To:__
 
 1). First, clone this repo to your laptop or computer using terminal (command line): 
-- `$ git clone https://github.com/VovkaZy/.git`
+- `$ git clone https://github.com/VovkaZy/FriendFramework.git`
 
 2). After this, change the directory to that, which contain framework files: 
 - `$ cd your_dirpath/`
