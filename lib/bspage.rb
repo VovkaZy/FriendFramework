@@ -90,7 +90,7 @@ class BSPage
   # Scrolling to the bottom of the page
   def scroll_to_bottom
     Logbook.step('Scrolling to the bottom of a page')
-    @browser.execute_script'window.scrollTo(0, document.body.scrollHeight)')
+    @browser.execute_script('window.scrollTo(0, document.body.scrollHeight)')
   end
 
   # To get the screenshot with the result of test script
