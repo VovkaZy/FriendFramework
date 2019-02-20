@@ -25,10 +25,10 @@ class FindFreelancersPage < BSPage
   FR_PROFILE_TITLE =  { css: 'h4[data-qa="tile_title"]'                 }.freeze
   FR_PROFILE_DESCR =  { css: 'div.d-none p[data-qa="tile_description"]' }.freeze
 
-  SKILLS =                 { css: 'div.p-lg-top-agg-sm-lg>span'        }.freeze
-  PAGINATION =             { css: 'label[class="p-sm-right"]'          }.freeze
-  SEARCH_RESULTS_SECTION = { css: 'section.air-card-hover_tile'        }.freeze
-  CLOSE_COOKIE_BANNER =    { css: 'up-c-close-icon.hydrated'           }.freeze
+  SKILLS =                 { css: 'div.p-lg-top-agg-sm-lg>span'         }.freeze
+  PAGINATION =             { css: 'label[class="p-sm-right"]'           }.freeze
+  SEARCH_RESULTS_SECTION = { css: 'section.air-card-hover_tile'         }.freeze
+  COOKIE_BANNER =          { css: 'ugc-cookie-banner-internal.hydrated' }.freeze
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # ==== METHODS ====
   #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -38,7 +38,7 @@ class FindFreelancersPage < BSPage
   def parse_result_from_first_page
     scroll_to_bottom
     wait_for { displayed?(PAGINATION) }
-    Logbook.step('*** >>> Saving search results... <<< ***')
+    Logbook.step('*** >>> Saving search results ... <<< ***' + "\n")
 
     @freelancers_sections_array = get_elements(SEARCH_RESULTS_SECTION)
     @freelancers_sections_array.each do |element|
@@ -82,7 +82,7 @@ class FindFreelancersPage < BSPage
   #
   # @return {FreelancerProfile instance} hash with
   def open_choosen_freelancer_profile(freelancer_name = nil)
-    close_banner
+    close_banner(COOKIE_BANNER)
     profile_name = freelancer_name || @choosen_freelancer_name
     Logbook.step("Navigate to freelancer '#{profile_name}' profile page...")
     click_on(link: profile_name.to_s)

@@ -31,10 +31,10 @@ class HomePage < BSPage
   #
   # @return [FindFreelancerPage] instance with search results & webdriver state
   def find_freelancer_with(keyword)
-    click_wait FIND_FREELANCERS, 2
+    click_wait FIND_FREELANCERS, 1
     type_text FIND_FREELANCERS, keyword
     wait 1
-    click_wait MAGNIFYING_GLASS_BUTTON, 2
+    click_wait MAGNIFYING_GLASS_BUTTON, 1
     wait_for_page_to_load FindFreelancersPage.name
     FindFreelancersPage.new(@browser)
   end

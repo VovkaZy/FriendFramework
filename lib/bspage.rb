@@ -73,9 +73,13 @@ class BSPage
   end
 
   # To close cookie banner at the bottom of a page
-  def close_banner
-    Logbook.message('Closing cookie bunner...')
-    @browser.execute_script("document.querySelector('ugc-cookie-banner-internal').shadowRoot.querySelector('.close').click()")
+  def close_banner(locator)
+    if displayed?(locator)
+      Logbook.step('Closing cookie banner')
+      @browser.execute_script("document.querySelector('ugc-cookie-banner-internal').shadowRoot.querySelector('.close').click()")
+    else
+      Logbook.message('There is no cookie banner')
+    end
   end
 
   # To close the browser and show common result final result of a test execution
@@ -93,9 +97,9 @@ class BSPage
   end
 
   # To get the screenshot with the result of test script
-  def screenshot
+  def make_screenshot
     Logbook.step('Taking a screenshot of a result page')
-    @browser.save_screenshot("screenshot - #{Time.now.strftime('%Y-%m-%d %H-%M-%S')}.png")
+    @browser.save_screenshot("screenshots/screenshot - #{Time.now.strftime('%Y-%m-%d %H-%M-%S')}.png")
   end
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -178,11 +182,13 @@ class BSPage
   # Is the element displayed?
   #
   # @return [Boolean]
-  def element_displayed?(locator)
-    @browser.find_element(locator).displayed?
-    true
-  rescue Selenium::WebDriver::Error::NoSuchElementError
-    false
+  def displayed?(locator)
+    Logbook.message("Check is element with locator #{locator} displayed?")
+    begin
+      @browser.find_element(locator).displayed?
+    rescue Selenium::WebDriver::Error::NoSuchElementError
+      false
+    end
   end
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -210,16 +216,6 @@ class BSPage
   # @return [Elements]
   def get_elements(locator, base_element = nil)
     (base_element ? base_element : @browser).find_elements(locator)
-  end
-
-  # Check if element with locator is displayed on a page
-  def displayed?(locator)
-    Logbook.message("Check is element with locator #{locator} displayed?")
-    begin
-      @browser.find_element(locator).displayed?
-    rescue Selenium::WebDriver::Error::NoSuchElementError
-      false
-    end
   end
 
   # Get element text
