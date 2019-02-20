@@ -69,7 +69,7 @@ freelancer_profile = freelancers_search_result.open_choosen_freelancer_profile
 freelancer_profile.verify_result_contains_keyword 'selenium'
 
 # [12] Taking s screenshot of result page
-freelancer_profile.screenshot
+freelancer_profile.make_screenshot
 
 # [13] Wait a little bit to see the result page
 freelancer_profile.wait 10
