@@ -30,8 +30,10 @@ __How To:__
  
 5). If you want to change keyword or browser:
 - Just change it in test file find_freelancers_with_keyword.rb
-  Friend is smart enough to get it direct from input
+  
+  Friend is smart enough to get it direct from input.
 
+***********************************************************************************************
 __P.S:__ 
 
 - You can use lib/constants/constants.rb, if you want to build more tests in the future:)
