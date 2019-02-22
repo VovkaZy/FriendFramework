@@ -1,6 +1,6 @@
 # FriendFramework Test task for Upwork company
 
-__Friend Framework__ is a small framework for web testing using of Page Object pattern.  
+__Friend Framework__ is a small framework for web testing using Page Object pattern.  
 
 ver.: 0.9
 
